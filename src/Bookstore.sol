@@ -19,7 +19,7 @@ contract Bookstore {
         bool premium;
     }
 
-    event BookAdded(Book book);
+    event BookAdded(uint256 indexed id, string title, bool premium);
     event SubscriptionPurchase(address indexed subscriber);
 
     modifier onlyOwner() {
@@ -50,7 +50,7 @@ contract Bookstore {
         book.title = _title;
         book.premium = _premium;
 
-        emit BookAdded(book);
+        emit BookAdded(book.id, book.title, book.premium);
         noOfBooks++;
     }
 
